@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This Isn't a Résumé Problem | Infographic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F7F9FB;
+      color: #051923;
+      padding: 2rem;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
+      height: 400px;
+      max-height: 50vh;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="container mx-auto max-w-4xl">
+    <header class="text-center my-12">
+      <h1 class="text-4xl md:text-6xl font-black text-[#003554] tracking-tight">This Isn’t a Résumé Problem</h1>
+      <p class="mt-4 text-lg md:text-xl text-[#006494]">Virtue signals, false fixes, and the quiet exploitation of unemployed workers in a broken system.</p>
+    </header>
+
+    <main class="space-y-12 md:space-y-16">
+      <section>
+        <h2 class="text-3xl font-bold text-[#003554] mb-4">Let's name what's happening.</h2>
+        <p class="text-lg text-[#051923]">The job market, for many people right now, is <span class="font-black text-red-600 text-2xl">brutal</span>. Not challenging. Not "in transition." Brutal.</p>
+        <p class="mt-4 text-lg text-[#051923]">Layoffs are happening not because people underperformed, but because companies are chasing cost savings and AI-enabled efficiencies with a kind of frothy, almost religious fervor.</p>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold text-[#003554] mb-4">The Exploitation of Desperation</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="text-lg text-[#051923]">When people are at their lowest — uncertain, anxious, and sometimes ashamed — there's an entire cottage industry that pops up with a promise: <span class="font-bold text-[#00A6FB]">We can fix it.</span></p>
+          <div class="chart-container mt-6">
+            <canvas id="promisesChart"></canvas>
+          </div>
+          <p class="text-center text-sm text-gray-500 mt-2">This chart visualizes the gap between the advertised impact of many paid career services and their more modest, realistic outcomes in a difficult market.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003554] mb-4">✨ Ethical Project Idea Generator</h2>
+          <p class="text-center text-lg text-[#006494] mb-8">Inspired by the article's call to "create something," this tool uses AI to help you brainstorm project ideas based on your skills and interests.</p>
+          <div class="flex flex-col items-center space-y-4">
+            <textarea id="skillsInput" class="w-full p-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00A6FB] resize-none" rows="4" placeholder="Enter your skills, interests, and past experiences here..."></textarea>
+            <button id="generateBtn" class="px-8 py-3 bg-[#006494] hover:bg-[#003554] text-white font-bold rounded-full transition-colors duration-200 ease-in-out shadow-lg">Generate Ideas</button>
+          </div>
+          <div id="loadingIndicator" class="hidden text-center mt-8 text-lg text-[#006494] font-semibold animate-pulse">
+            <p>Generating ideas...</p>
+          </div>
+          <div id="output" class="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
+            <p class="text-center text-gray-500">Your project ideas will appear here.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center mt-16 py-8 border-t border-gray-300">
+      <p class="text-gray-600">If you're in the thick of this, know this: you're not alone. And you're not broken.</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const promisesCtx = document.getElementById('promisesChart').getContext('2d');
+      new Chart(promisesCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Résumé Rewrite', 'LinkedIn Polish', 'Coaching Package', 'Networking Course'],
+          datasets: [
+            {
+              label: 'Promised Impact',
+              data: [90, 85, 95, 80],
+              backgroundColor: 'rgba(0, 166, 251, 0.6)',
+              borderColor: 'rgba(0, 166, 251, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Realistic Impact',
+              data: [25, 30, 15, 45],
+              backgroundColor: 'rgba(5, 25, 35, 0.6)',
+              borderColor: 'rgba(5, 25, 35, 1)',
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function (value) {
+                  return value + '%';
+                },
+              },
+            },
+          },
+          plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'The Promise vs. Reality of Career Services', font: { size: 16 } },
+          },
+        },
+      });
+    });
+  </script>
+</body>
+</html>
